@@ -17,10 +17,10 @@ function doGet() {
       time: t ? t[1].padStart(2, '0') + ':' + t[2] : a, type: r[1].trim(), title: r[2].trim(),
       map: r[3].trim(), remark: r[4].trim(), link: r[5].trim(), pin: pin ? [+pin[1], +pin[2]] : null });
   });
-  // Put this page's link in the Setup tab (A13) so it can be tapped in the Sheets phone app.
+  // Put this page's link in the Setup tab (A13). On iPhone, copy it into Safari: Google's Sheets app cannot open it.
   const setup = ss.getSheetByName('Setup'), url = ScriptApp.getService().getUrl();
   if (setup && url && setup.getRange('A13').getFormula().indexOf(url) < 0) {
-    setup.getRange('A12').setValue('Trip page link (tap to open; send it to travel companions):');
+    setup.getRange('A12').setValue('Trip page link (copy it into Safari on iPhone; send it to travel companions):');
     setup.getRange('A13').setFormula('=HYPERLINK("' + url + '","Open trip page")');
   }
   const name = ss.getName();
