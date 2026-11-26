@@ -22,7 +22,8 @@ function doGet() {
   if (setup && url && setup.getRange('A13').getFormula().indexOf(url) < 0) {
     setup.getRange('A12').setValue('Trip page link (copy it into Safari on iPhone; send it to travel companions):');
     setup.getRange('A13').setFormula('=HYPERLINK("' + url + '","Open trip page")');
-    setup.getRange('A14').setValue('Address to copy into Safari: ' + url);
+    setup.getRange('A14').setValue('Address to copy into Safari:');
+    setup.getRange('A15').setValue(url);
   }
   const name = ss.getName();
   const data = JSON.stringify({ title: name, days: days,
